@@ -16,11 +16,12 @@ import javax.swing.JOptionPane;
 
 public class PropietarioData {
 	 private Connection con = null;
-
+         
 
 public PropietarioData(){        
         con=Conexion.getConexion();    
     }
+
 
 public void guardarPropietario(Propietario propietario){
         //consulta para insertar datos

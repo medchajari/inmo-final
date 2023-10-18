@@ -8,18 +8,18 @@ import java.time.LocalDate;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Kelly
  */
 public class Contrato {
+
     private int idContrato;
-    private int idInquilino;
-    private int idInmueble;
-    private LocalDate fechaRealizacion;
+    private Inquilino ocupante;
+    private Inmueble inmueble;
+    private Date fechaRealizacion;
     private Date fechaInicio;
-    private Date fechaTerminacion;
+    private Date fechaFin;
     private char marca;
     String vendedor;
     String garante;
@@ -28,28 +28,31 @@ public class Contrato {
     public Contrato() {
     }
 
-    public Contrato(int idContrato, int idInquilino, int idInmueble, LocalDate fechaRealizacion, Date fechaInicio, Date fechaTerminacion, char marca, String vendedor, String garante, boolean estado) {
+    public Contrato(int idContrato, Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, String vendedor, String garante, boolean estado) {
         this.idContrato = idContrato;
-        this.idInquilino = idInquilino;
-        this.idInmueble = idInmueble;
+        this.ocupante = ocupante;
+        this.inmueble = inmueble;
         this.fechaRealizacion = fechaRealizacion;
         this.fechaInicio = fechaInicio;
-        this.fechaTerminacion = fechaTerminacion;
+        this.fechaFin = fechaFin;
         this.marca = marca;
         this.vendedor = vendedor;
         this.garante = garante;
         this.estado = estado;
     }
 
-    public Contrato(int idInquilino, int idInmueble, LocalDate fechaRealizacion, Date fechaInicio, Date fechaTerminacion, String garante, boolean estado) {
-        this.idInquilino = idInquilino;
-        this.idInmueble = idInmueble;
+    public Contrato(Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, String vendedor, String garante, boolean estado) {
+        this.ocupante = ocupante;
+        this.inmueble = inmueble;
         this.fechaRealizacion = fechaRealizacion;
         this.fechaInicio = fechaInicio;
-        this.fechaTerminacion = fechaTerminacion;
+        this.fechaFin = fechaFin;
+        this.marca = marca;
+        this.vendedor = vendedor;
         this.garante = garante;
         this.estado = estado;
     }
+
 
     public int getIdContrato() {
         return idContrato;
@@ -59,27 +62,27 @@ public class Contrato {
         this.idContrato = idContrato;
     }
 
-    public int getIdInquilino() {
-        return idInquilino;
+    public Inquilino getOcupante() {
+        return ocupante;
     }
 
-    public void setIdInquilino(int idInquilino) {
-        this.idInquilino = idInquilino;
+    public void setOcupante(Inquilino ocupante) {
+        this.ocupante = ocupante;
     }
 
-    public int getIdInmueble() {
-        return idInmueble;
+    public Inmueble getInmueble() {
+        return inmueble;
     }
 
-    public void setIdInmueble(int idInmueble) {
-        this.idInmueble = idInmueble;
+    public void setInmueble(Inmueble inmueble) {
+        this.inmueble = inmueble;
     }
 
-    public LocalDate getFechaRealizacion() {
+    public Date getFechaRealizacion() {
         return fechaRealizacion;
     }
 
-    public void setFechaRealizacion(LocalDate fechaRealizacion) {
+    public void setFechaRealizacion(Date fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
 
@@ -91,12 +94,12 @@ public class Contrato {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaTerminacion() {
-        return fechaTerminacion;
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
-    public void setFechaTerminacion(Date fechaTerminacion) {
-        this.fechaTerminacion = fechaTerminacion;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public char getMarca() {
@@ -133,12 +136,11 @@ public class Contrato {
 
     @Override
     public String toString() {
-        return "Contrato{" + "idContrato=" + idContrato + ", idInquilino=" + idInquilino + ", idInmueble=" + idInmueble + ", fechaRealizacion=" + fechaRealizacion + ", fechaInicio=" + fechaInicio + ", fechaTerminacion=" + fechaTerminacion + ", marca=" + marca + ", vendedor=" + vendedor + ", garante=" + garante + ", estado=" + estado + '}';
+        return "Contrato{" + "idContrato=" + idContrato + ", ocupante=" + ocupante + ", inmueble=" + inmueble + ", fechaRealizacion=" + fechaRealizacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", marca=" + marca + ", vendedor=" + vendedor + ", garante=" + garante + ", estado=" + estado + '}';
     }
+
     
+
     
-    
-    
-    
-    
+
 }

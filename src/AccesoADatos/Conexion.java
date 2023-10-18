@@ -21,7 +21,7 @@ public class Conexion {
 		if(conexion==null){
 			try {
 				Class.forName("org.mariadb.jdbc.Driver");
-                                //jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull
+//                                jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull
 				conexion = DriverManager.getConnection(url+db,usuario,password);
 				
                                 JOptionPane.showMessageDialog(null,"Conectado correctamente.");

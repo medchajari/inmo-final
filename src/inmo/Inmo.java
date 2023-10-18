@@ -22,7 +22,7 @@ public class Inmo {
         PropietarioData proD= new PropietarioData();
 
 //----------------------------------------GUARDAR PROPIETARIO-------------------------------------------
-//      proD.guardarPropietario(new Propietario("Fabricio","enrique",5445554,"cordoba 220",15444872,true));
+      proD.guardarPropietario(new Propietario("Fabricio","enrique",5445554,"cordoba 220",15444872,true));
 //----------------------------------------ELIMINAR PROPIETARIO-----------------------------------------
 //    int idPropietarioAEliminar = 5;
 //    proD.eliminarPropietario(idPropietarioAEliminar);
@@ -30,22 +30,22 @@ public class Inmo {
 //        conexion.close();
 //	} catch (SQLException e) {
 //	}
-//----------------------------------------MODIFICAR PROPIETARIO----------------------------------------
-    Propietario propietarioAModificar = new Propietario();
-    propietarioAModificar.setIdPropietario(1); 
-    propietarioAModificar.setNombre("Juana");
-    propietarioAModificar.setApellido("baaaa");
-    propietarioAModificar.setDni(335648);
-    propietarioAModificar.setTelefono(1656877);
-    propietarioAModificar.setDomicilio("Pablo Stampa 1325");
-    propietarioAModificar.setEstado(false);
-
-    
-	proD.modificarPropietario(propietarioAModificar);
-    try {
-        conexion.close();
-    } catch (SQLException e) {
-    }
+////----------------------------------------MODIFICAR PROPIETARIO----------------------------------------
+//    Propietario propietarioAModificar = new Propietario();
+//    propietarioAModificar.setIdPropietario(1); 
+//    propietarioAModificar.setNombre("Juana");
+//    propietarioAModificar.setApellido("baaaa");
+//    propietarioAModificar.setDni(335648);
+//    propietarioAModificar.setTelefono(1656877);
+//    propietarioAModificar.setDomicilio("Pablo Stampa 1325");
+//    propietarioAModificar.setEstado(false);
+//
+//    
+//	proD.modificarPropietario(propietarioAModificar);
+//    try {
+//        conexion.close();
+//    } catch (SQLException e) {
+//    }
 //----------------------------------------BUSCAR PROPIETARIO POR DNI---(tener en cuenta activo y no activo)---------------------------------
 //        Propietario propEncont= proD.buscarPropietarioPorDni(335648);
 //

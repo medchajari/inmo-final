@@ -11,33 +11,36 @@ package Entidades;
  * @author Kelly
  */
 public class Inquilino {
-    int idInquilino;
-    String nombre;
-    String apellido;
-    int dni;
-    int cuit;
-    String lugarTrabajo;
-    char tipo;
+    private int idInquilino;
+    private String nombre;
+    private String apellido;
+    private int dni;
+    private int cuit;
+    private String lugarTrabajo;
+    private int telefono;
+    private String tipo;
 
     public Inquilino() {
     }
 
-    public Inquilino(int idInquilino, String nombre, String apellido, int dni, int cuit, String lugarTrabajo, char tipo) {
+    public Inquilino(int idInquilino, String nombre, String apellido, int dni, int cuit, String lugarTrabajo, String tipo, int telefono) {
         this.idInquilino = idInquilino;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.cuit = cuit;
         this.lugarTrabajo = lugarTrabajo;
+        this.telefono= telefono;
         this.tipo = tipo;
     }
 
-    public Inquilino(String nombre, String apellido, int dni, int cuit, String lugarTrabajo, char tipo) {
+    public Inquilino(String nombre, String apellido, int dni, int cuit, String lugarTrabajo, int telefono, String tipo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.cuit = cuit;
         this.lugarTrabajo = lugarTrabajo;
+        this.telefono= telefono;
         this.tipo = tipo;
     }
 
@@ -89,19 +92,29 @@ public class Inquilino {
         this.lugarTrabajo = lugarTrabajo;
     }
 
-    public char getTipo() {
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(char tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
     @Override
     public String toString() {
-        return "Inquilino{" + "idInquilino=" + idInquilino + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", lugarTrabajo=" + lugarTrabajo + ", tipo=" + tipo + '}';
+        return "Inquilino{" + "idInquilino=" + idInquilino + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", lugarTrabajo=" + lugarTrabajo + ", telefono=" + telefono + ", tipo=" + tipo + '}';
     }
-    
+
+   
     
 
 }
