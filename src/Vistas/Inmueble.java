@@ -36,7 +36,7 @@ public class Inmueble extends javax.swing.JFrame {
                 jPanel1.setBackground(new java.awt.Color(255, 255, 255));
                 jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono-la83-larga.png"))); // NOI18N
+                jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MeD Servicios Inf\\Documents\\GitHub\\inmo-final\\src\\img\\icono-la83-larga.png")); // NOI18N
                 jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 120));
                 jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 410, 30));
 
