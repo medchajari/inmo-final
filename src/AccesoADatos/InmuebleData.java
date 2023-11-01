@@ -348,7 +348,7 @@ public void fijarPrecio(){
             ps.setString(3,zona);
             ResultSet rs = ps.executeQuery();
             
-            while (rs.next()) {
+            if (rs.next()) {
                 
                 
                 Inmueble inmueble = new Inmueble();
@@ -368,7 +368,9 @@ public void fijarPrecio(){
                 inmueble.setPropietario(pro);
 
                 inmuebles.add(inmueble);
-            }
+            }else{
+	    JOptionPane.showMessageDialog(null, "NO HAY INMUEBLES DE ESAS CARACTERÍSTICAS");
+	    }
 
             ps.close();
         } catch (SQLException e) {
@@ -491,7 +493,7 @@ con = Conexion.getConexion();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, dni);
         ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
+        if (rs.next()) {
             Inmueble inmueble = new Inmueble();
             inmueble.setIdInmueble(rs.getInt("idInmueble"));
              Inquilino inq = inqData.buscarInquilinoPorId(rs.getInt("idInquilino"));
@@ -507,7 +509,7 @@ con = Conexion.getConexion();
             inmueble.setTipoInmueble(rs.getString("tipoInmueble"));
             inmueble.setEstado(rs.getInt("estado"));
      inmuebles.add(inmueble);
-        }
+        }else{JOptionPane.showMessageDialog(null, "El propietario no tiene inmueble asociados");}
 
         ps.close();
     } catch (SQLException e) {
@@ -528,7 +530,7 @@ con = Conexion.getConexion();
         ps.setInt(1, dni);
         ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
+        if (rs.next()) {
             Inmueble inmueble = new Inmueble();
             inmueble.setIdInmueble(rs.getInt("idInmueble"));
             Inquilino inq = inqData.buscarInquilinoPorId(rs.getInt("idInquilino"));
@@ -546,7 +548,7 @@ con = Conexion.getConexion();
             inmueble.setRevisor(rs.getString("revisor"));
             
      inmuebles.add(inmueble);
-        }
+        }else{JOptionPane.showMessageDialog(null, "NO HAY INMUEBLES ASOCIADO CON EL DNI INGRESADO");}
 
         ps.close();
     } catch (SQLException e) {
