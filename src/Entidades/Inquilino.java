@@ -12,8 +12,9 @@ package Entidades;
  */
 public class Inquilino {
     private int idInquilino;
-    private String nombre;
     private String apellido;
+    private String nombre;
+    
     private int dni;
     private int cuit;
     private String lugarTrabajo;
@@ -23,10 +24,10 @@ public class Inquilino {
     public Inquilino() {
     }
 
-    public Inquilino(int idInquilino, String nombre, String apellido, int dni, int cuit, String lugarTrabajo, String tipo, int telefono) {
+    public Inquilino(int idInquilino,  String apellido,String nombre, int dni, int cuit, String lugarTrabajo, String tipo, int telefono) {
         this.idInquilino = idInquilino;
-        this.nombre = nombre;
-        this.apellido = apellido;
+	this.apellido = apellido;
+        this.nombre = nombre;        
         this.dni = dni;
         this.cuit = cuit;
         this.lugarTrabajo = lugarTrabajo;
@@ -34,9 +35,9 @@ public class Inquilino {
         this.tipo = tipo;
     }
 
-    public Inquilino(String nombre, String apellido, int dni, int cuit, String lugarTrabajo, int telefono, String tipo) {
-        this.nombre = nombre;
+    public Inquilino( String apellido,String nombre, int dni, int cuit, String lugarTrabajo, int telefono, String tipo) {
         this.apellido = apellido;
+	this.nombre = nombre;        
         this.dni = dni;
         this.cuit = cuit;
         this.lugarTrabajo = lugarTrabajo;
@@ -111,7 +112,7 @@ public class Inquilino {
 
     @Override
     public String toString() {
-        return "Inquilino{" + "idInquilino=" + idInquilino + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", lugarTrabajo=" + lugarTrabajo + ", telefono=" + telefono + ", tipo=" + tipo + '}';
+        return   apellido+ " " +  nombre + " dni: " + dni  + " Tipo=" + tipo  ;
     }
 
    

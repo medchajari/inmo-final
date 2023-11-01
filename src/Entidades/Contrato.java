@@ -1,34 +1,26 @@
 package Entidades;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Kelly
- */
+
 public class Contrato {
 
     private int idContrato;
     private Inquilino ocupante;
     private Inmueble inmueble;
-    private Date fechaRealizacion;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private java.sql.Date fechaRealizacion;
+    private java.sql.Date fechaInicio;
+    private java.sql.Date fechaFin;
     private char marca;
+     private Inmueble idInmueble;
     String vendedor;
     String garante;
-    boolean estado;
+    int estado;
 
     public Contrato() {
     }
 
-    public Contrato(int idContrato, Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, String vendedor, String garante, boolean estado) {
+    public Contrato(int idContrato, Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, Inmueble idInmueble, String vendedor, String garante, int estado) {
         this.idContrato = idContrato;
         this.ocupante = ocupante;
         this.inmueble = inmueble;
@@ -36,12 +28,13 @@ public class Contrato {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.marca = marca;
+	this.idInmueble= idInmueble;
         this.vendedor = vendedor;
         this.garante = garante;
         this.estado = estado;
     }
 
-    public Contrato(Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, String vendedor, String garante, boolean estado) {
+    public Contrato(Inquilino ocupante, Inmueble inmueble, Date fechaRealizacion, Date fechaInicio, Date fechaFin, char marca, String vendedor, String garante, int estado) {
         this.ocupante = ocupante;
         this.inmueble = inmueble;
         this.fechaRealizacion = fechaRealizacion;
@@ -78,27 +71,27 @@ public class Contrato {
         this.inmueble = inmueble;
     }
 
-    public Date getFechaRealizacion() {
+   public java.sql.Date getFechaRealizacion() {
         return fechaRealizacion;
     }
 
-    public void setFechaRealizacion(Date fechaRealizacion) {
+    public void setFechaRealizacion(java.sql.Date fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
 
-    public Date getFechaInicio() {
+    public java.sql.Date getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(java.sql.Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public java.sql.Date getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(java.sql.Date fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -108,6 +101,14 @@ public class Contrato {
 
     public void setMarca(char marca) {
         this.marca = marca;
+    }
+    
+    public Inmueble getIdInmueble() {
+        return idInmueble;
+    }
+
+    public void setIdInmueble(Inmueble idInmueble) {
+        this.idInmueble = idInmueble;
     }
 
     public String getVendedor() {
@@ -126,18 +127,20 @@ public class Contrato {
         this.garante = garante;
     }
 
-    public boolean isEstado() {
+    public int isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
     @Override
     public String toString() {
-        return "Contrato{" + "idContrato=" + idContrato + ", ocupante=" + ocupante + ", inmueble=" + inmueble + ", fechaRealizacion=" + fechaRealizacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", marca=" + marca + ", vendedor=" + vendedor + ", garante=" + garante + ", estado=" + estado + '}';
+        return "Contrato{" + "idContrato=" + idContrato + ", ocupante=" + idInmueble+ocupante + ", inmueble=" + inmueble + ", fechaRealizacion=" + fechaRealizacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", marca=" + marca + ", vendedor=" + vendedor + ", garante=" + garante + ", estado=" + estado + '}';
     }
+
+	
 
     
 

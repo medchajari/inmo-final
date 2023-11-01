@@ -18,44 +18,41 @@ import javax.swing.JOptionPane;
  * @author Kelly
  */
 public class InquilinoData {
-    private Connection con = null;
+ private Connection con;
+ private Inquilino ocupante = new Inquilino();
+public InquilinoData() {
+        con = Conexion.getConexion();
+	
+    }
 
 
-public InquilinoData(){        
-        con=Conexion.getConexion();    
-//        InquilinoData() inqData= new InquilinoData();
-}
-
-public void agregarInquilino(Inquilino ocupante){
-    //consulta ok
-     String sql = "INSERT INTO inquilino( apellido, nombre, dni, cuit, lugarTrabajo, telefono, tipo) VALUES (?,?,?,?,?,?,?)";
-      try {
-            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setString(2, ocupante.getApellido());
-            ps.setString(1, ocupante.getNombre());
+public void agregarInquilino(Inquilino ocupante) {
+    String sql = "INSERT INTO inquilino(apellido, nombre, dni, cuit, lugarTrabajo, telefono, tipo) VALUES (?,?,?,?,?,?,?)";
+    con = Conexion.getConexion();
+        try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, ocupante.getApellido());
+            ps.setString(2, ocupante.getNombre());
             ps.setInt(3, ocupante.getDni());
             ps.setInt(4, ocupante.getCuit());
             ps.setString(5, ocupante.getLugarTrabajo());
             ps.setInt(6, ocupante.getTelefono());
-            ps.setString(7,String.valueOf(ocupante.getTipo()));
+            ps.setString(7, String.valueOf(ocupante.getTipo()));
 
-            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
 
-            ResultSet rs = ps.getGeneratedKeys();
- if(rs.next()){
-                
-                ocupante.setIdInquilino(rs.getInt(1));
-                JOptionPane.showMessageDialog(null,"Inquilino guardado exitosamente.");
-            
+            if (rowsAffected > 0) {
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        ocupante.setIdInquilino(rs.getInt(1));
+                        JOptionPane.showMessageDialog(null, "Inquilino guardado exitosamente.");
+                    }
+                }
             }
-            ps.close();
-            
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino.");
-        }
-    
+        } catch (SQLException e) {
+           
+        
     }
+}
 
 
     private static class Statement {
@@ -109,7 +106,7 @@ public void agregarInquilino(Inquilino ocupante){
             ocupante.setDni(rs.getInt ("dni"));
             ocupante.setCuit(rs.getInt ("cuit"));
             ocupante.setTelefono(rs.getInt("telefono"));
-            ocupante.setLugarTrabajo(rs.getString ("lugardetrabajo"));
+            ocupante.setLugarTrabajo(rs.getString ("lugartrabajo"));
 	    ocupante.setTipo(rs.getString("tipo"));
 	    
             
@@ -173,7 +170,7 @@ public void agregarInquilino(Inquilino ocupante){
    public ArrayList <Inquilino> listarInquilinos(){
          
           ArrayList<Inquilino> inquilinos = new ArrayList<>();
-
+		con = Conexion.getConexion();
     try {
         String sql = "SELECT * FROM inquilino ORDER BY nombre";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -202,6 +199,36 @@ public void agregarInquilino(Inquilino ocupante){
 
     return inquilinos;
 }
+   
+   //yoha
+   
+       public Inquilino buscarInquilinoPorId(int id) {
+        con = Conexion.getConexion();
+        try {
+            String sql = "SELECT * FROM inquilino WHERE idInquilino = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                ocupante.setNombre(rs.getString("nombre"));
+                ocupante.setApellido(rs.getString("apellido"));
+                ocupante.setDni(rs.getInt("dni"));
+                ocupante.setCuit(rs.getInt("cuit"));
+                ocupante.setTelefono(rs.getInt("telefono"));
+                ocupante.setLugarTrabajo(rs.getString("lugarTrabajo"));
+                ocupante.setTipo(rs.getString("tipo"));
+            }
+//            JOptionPane.showMessageDialog(null, "El inquilino no existe.");
+
+            ps.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de inquilino: " + e.getMessage());
+        }
+
+        return ocupante;
+    }
 }
    
    

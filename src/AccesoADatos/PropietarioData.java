@@ -15,48 +15,52 @@ import javax.swing.JOptionPane;
 
 
 public class PropietarioData {
-	 private Connection con = null;
-         
+	private Connection con;
+    private PropietarioData proD;
 
-public PropietarioData(){        
-        con=Conexion.getConexion();    
+    public PropietarioData() {
+
     }
 
+    public PropietarioData(Connection con) {
+        this.con = con;
+//        con=Conexion.getConexion();    
+    }
 
-public void guardarPropietario(Propietario propietario){
+public void guardarPropietario(Propietario propietario) {
         //consulta para insertar datos
-        String sql = "INSERT INTO propietario(nombre, apellido, dni, domicilio, telefono, estado) VALUES (?,?,?,?,?,1)";
-        
+        String sql = "INSERT INTO propietario(nombre, apellido, dni, domicilio, telefono, estado) VALUES (?,?,?,?,?,1)"; //funciona la consulta
+        con = Conexion.getConexion();
         try {
-            PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, propietario.getNombre());
             ps.setString(2, propietario.getApellido());
             ps.setInt(3, propietario.getDni());
             ps.setString(4, propietario.getDomicilio());
             ps.setInt(5, propietario.getTelefono());
-            ps.setBoolean(6,propietario.isEstado());
-            
+            ps.setInt(6, propietario.Estado());
+
             //ejecutamos, enviamos los datos
             ps.executeUpdate();
-            
+
             //obtener la clave
             ResultSet rs = ps.getGeneratedKeys();
-            
+
             //si se pudo agregar setamos el id
-            if(rs.next()){
-                
+            if (rs.next()) {
+
                 propietario.setIdPropietario(rs.getInt(1));
-                JOptionPane.showMessageDialog(null,"Propietario guardada exitosamente.");
-            
+                JOptionPane.showMessageDialog(null, "Propietario guardado exitosamente.");
+
             }
             ps.close();
-            
-            
+
             //si nos equivocamos en algun datos nos muestra este error
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al tratar de acceder a la tabla Propietario.");
         }
-    
+
     }
 
     public void eliminarPropietario (int id){
@@ -80,59 +84,60 @@ public void guardarPropietario(Propietario propietario){
         
     }
   
-public Propietario buscarPropietarioPorDni(int dni){
-        String sql = "SELECT nombre, apellido, telefono, domicilio, estado FROM propietario WHERE dni = ? ";
+    public Propietario buscarPropietarioPorDni(int dni) {
+          String sql = "SELECT idPropietario, nombre, apellido, telefono, domicilio, estado FROM propietario WHERE estado = 1 and dni = ? ";
+//        String sql = "SELECT idPropietario, nombre, apellido, telefono, domicilio, estado FROM propietario WHERE dni = ? ";
 //        String sql = "SELECT nombre, anio FROM propietario WHERE idPropietario = ? AND estado = 1";        
-    Propietario propietario = null;
+        Propietario propietario = null;
+        con = Conexion.getConexion();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, dni);
-        ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                propietario = new Propietario();
+                propietario.setDni(dni);                
+                propietario.setIdPropietario(rs.getInt("idPropietario")); //agrado Rodo
+                propietario.setNombre(rs.getString("nombre"));
+                propietario.setApellido(rs.getString("apellido"));
+                propietario.setTelefono(rs.getInt("telefono"));
+                propietario.setDomicilio(rs.getString("domicilio"));
+                propietario.setEstado(rs.getInt("estado"));
 
-        if (rs.next()) {
-            propietario = new Propietario();
-            propietario.setDni(dni);
-            propietario.setNombre(rs.getString("nombre"));
-            propietario.setApellido(rs.getString("apellido"));
-            propietario.setTelefono(rs.getInt("telefono"));
-	    propietario.setDomicilio(rs.getString("domicilio"));
-	    propietario.setEstado(rs.getBoolean("estado"));
-            
-         
-        } else {
-            JOptionPane.showMessageDialog(null, "La propietario no existe.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El propietario no existe.");
+            }
+
+            ps.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de propietario: " + e.getMessage());
         }
 
-        ps.close();
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de propietario: " + e.getMessage());
-    }
-	
-    return propietario;
+        return propietario;
     }
  
-    public void modificarPropietario(Propietario propietario){
-   String sql = "UPDATE propietario SET nombre=?, apellido=?, dni=?, domicilio=?, telefono=?, estado=? WHERE idPropietario=?";
-    
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, propietario.getNombre());
-        ps.setString(2, propietario.getApellido());
-        ps.setInt(3, propietario.getDni());
-        ps.setString(4, propietario.getDomicilio());
-        ps.setInt(5, propietario.getTelefono());
-	ps.setBoolean(6, propietario.getEstado());
-        ps.setInt(7, propietario.getIdPropietario());
+     public void modificarPropietario(Propietario propietario) {
+        String sql = "UPDATE propietario SET nombre=?, apellido=?, dni=?, domicilio=?, telefono=?, estado=? WHERE idPropietario=?";
+        con = Conexion.getConexion();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, propietario.getNombre());
+            ps.setString(2, propietario.getApellido());
+            ps.setInt(3, propietario.getDni());
+            ps.setString(4, propietario.getDomicilio());
+            ps.setInt(5, propietario.getTelefono());
+            ps.setInt(6, propietario.getEstado());
+            ps.setInt(7, propietario.getIdPropietario());
 
-        int exito = ps.executeUpdate();
-        if (exito == 1) {
-            JOptionPane.showMessageDialog(null, "Propietario modificado Exitosamente.");
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Propietario modificado Exitosamente.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al tratar de acceder a la tabla propietario.");
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al tratar de acceder a la tabla propietario.");
-    }
-    
+
     }
     
       public ArrayList <Propietario> listarPropietarios(){
@@ -154,7 +159,7 @@ public Propietario buscarPropietarioPorDni(int dni){
             propietario.setDni(rs.getInt("dni"));
             propietario.setDomicilio(rs.getString("domicilio"));
             propietario.setTelefono(rs.getInt("telefono"));
-            propietario.setEstado(rs.getBoolean("estado"));
+            propietario.setEstado(rs.getInt("estado"));
 
             propietarios.add(propietario);
         }
@@ -167,6 +172,72 @@ public Propietario buscarPropietarioPorDni(int dni){
     }
 
     return propietarios;
+    }
+      
+      // yoha
+      
+      public Propietario buscarPropietarioPorId(int id) {
+        String sql = "SELECT * FROM propietario WHERE idPropietario = ? ";// cons.sql.andando
+       
+        Propietario propietario = null;
+        con = Conexion.getConexion();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                propietario = new Propietario();
+                propietario.setDni(rs.getInt("dni"));
+                propietario.setIdPropietario(rs.getInt("idPropietario"));
+                propietario.setNombre(rs.getString("nombre"));
+                propietario.setApellido(rs.getString("apellido"));
+                propietario.setTelefono(rs.getInt("telefono"));
+                propietario.setDomicilio(rs.getString("domicilio"));
+                propietario.setEstado(rs.getInt("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El propietario no existe.");
+            }
+
+            ps.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de propietario: " + e.getMessage());
+        }
+
+        return propietario;
+    }
+      
+      //rodo
+      
+       public Propietario buscarPropietarioPorIdInmueble(int id) {
+        String sql = "SELECT FROM propietario WHERE idPropietario = ? ";
+//        String sql = "SELECT nombre, anio FROM propietario WHERE idPropietario = ? AND estado = 1";        
+        Propietario propietario = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                propietario = new Propietario();
+                propietario.setDni(rs.getInt("dni"));
+                propietario.setNombre(rs.getString("nombre"));
+                propietario.setApellido(rs.getString("apellido"));
+                propietario.setTelefono(rs.getInt("telefono"));
+                propietario.setDomicilio(rs.getString("domicilio"));
+                propietario.setEstado(rs.getInt("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El propietario no existe.");
+            }
+
+            ps.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de propietario: " + e.getMessage());
+        }
+
+        return propietario;
     }
 
 }

@@ -31,15 +31,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenuBar1 = new javax.swing.JMenuBar();
                 jMenu1 = new javax.swing.JMenu();
                 jMenuItem1 = new javax.swing.JMenuItem();
-                jMenuItem8 = new javax.swing.JMenuItem();
                 jMenu2 = new javax.swing.JMenu();
                 jMenuItem2 = new javax.swing.JMenuItem();
                 jMenuItem3 = new javax.swing.JMenuItem();
+                jMenuItem6 = new javax.swing.JMenuItem();
                 jMenu3 = new javax.swing.JMenu();
                 jMenuItem4 = new javax.swing.JMenuItem();
                 jMenuItem5 = new javax.swing.JMenuItem();
                 jMenu4 = new javax.swing.JMenu();
-                jMenuItem6 = new javax.swing.JMenuItem();
                 jMenuItem7 = new javax.swing.JMenuItem();
                 jMenu5 = new javax.swing.JMenu();
 
@@ -54,44 +53,86 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jMenu1.setText("Contratos");
 
                 jMenuItem1.setText("Nuevo Contrato");
+                jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem1ActionPerformed(evt);
+                        }
+                });
                 jMenu1.add(jMenuItem1);
-
-                jMenuItem8.setText("Buscar Contrato");
-                jMenu1.add(jMenuItem8);
 
                 jMenuBar1.add(jMenu1);
 
                 jMenu2.setText("Inmuebles");
 
                 jMenuItem2.setText("Agregar Inmueble");
+                jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem2ActionPerformed(evt);
+                        }
+                });
                 jMenu2.add(jMenuItem2);
 
                 jMenuItem3.setText("Buscar Inmueble");
+                jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem3ActionPerformed(evt);
+                        }
+                });
                 jMenu2.add(jMenuItem3);
+
+                jMenuItem6.setText("Listar info Inmuebles");
+                jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem6ActionPerformed(evt);
+                        }
+                });
+                jMenu2.add(jMenuItem6);
 
                 jMenuBar1.add(jMenu2);
 
                 jMenu3.setText("Inquilinos");
 
                 jMenuItem4.setText("Agregar Inquilino");
+                jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem4ActionPerformed(evt);
+                        }
+                });
                 jMenu3.add(jMenuItem4);
 
                 jMenuItem5.setText("Buscar Inquilino");
+                jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem5ActionPerformed(evt);
+                        }
+                });
                 jMenu3.add(jMenuItem5);
 
                 jMenuBar1.add(jMenu3);
 
                 jMenu4.setText("Propietarios");
 
-                jMenuItem6.setText("Buscar Propiedades");
-                jMenu4.add(jMenuItem6);
-
-                jMenuItem7.setText("Agregar Propiedades");
+                jMenuItem7.setText("Agregar Propietarios");
+                jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenuItem7ActionPerformed(evt);
+                        }
+                });
                 jMenu4.add(jMenuItem7);
 
                 jMenuBar1.add(jMenu4);
 
                 jMenu5.setText("Salir");
+                jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jMenu5MouseClicked(evt);
+                        }
+                });
+                jMenu5.addActionListener(new java.awt.event.ActionListener() {
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                jMenu5ActionPerformed(evt);
+                        }
+                });
                 jMenuBar1.add(jMenu5);
 
                 setJMenuBar(jMenuBar1);
@@ -109,6 +150,49 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
                 pack();
         }// </editor-fold>//GEN-END:initComponents
+
+        private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+			NuevoContrato con = new NuevoContrato();
+			    con.setVisible(true);                // TODO add your handling code here:
+        }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+        private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+               AgregarInmueble AInm = new AgregarInmueble();
+			    AInm.setVisible(true); 
+        }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+        private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+                BuscarInmueble BInm = new BuscarInmueble();
+			    BInm.setVisible(true); 
+        }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+        private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+                AgregarInquilino AInq = new AgregarInquilino();
+			    AInq.setVisible(true); 
+        }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+        private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+                Inquilino BInq = new Inquilino();
+			    BInq.setVisible(true); 
+        }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+        private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+                FormPropietario FPro = new FormPropietario();
+			    FPro.setVisible(true);
+        }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+        private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+           
+        }//GEN-LAST:event_jMenu5ActionPerformed
+
+        private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+               System.exit(0); 
+        }//GEN-LAST:event_jMenu5MouseClicked
+
+        private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+              ListarInmueble Lin = new ListarInmueble();
+			    Lin.setVisible(true);  // TODO add your handling code here:
+        }//GEN-LAST:event_jMenuItem6ActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -160,7 +244,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         private javax.swing.JMenuItem jMenuItem5;
         private javax.swing.JMenuItem jMenuItem6;
         private javax.swing.JMenuItem jMenuItem7;
-        private javax.swing.JMenuItem jMenuItem8;
         private javax.swing.JPanel jPanel1;
         // End of variables declaration//GEN-END:variables
 }

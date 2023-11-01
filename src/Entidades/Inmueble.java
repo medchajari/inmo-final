@@ -17,23 +17,25 @@ public class Inmueble {
     private int idInmueble;
     private Inquilino ocupante;
     private Propietario propietario;
+    private int idPropietario;
     private String caracteristicas;
     private String direccion; 
     private String zona;
-    private char tipoInmueble;
+    private String tipoInmueble;
     private float precio;
     private String revisor;
     private int superficieMinima;
     private String observaciones;
-    private boolean estado;
+    private int estado;
 
     public Inmueble() {
     }
 
-    public Inmueble(int idInmueble, Inquilino ocupante, Propietario propietario, String caracteristicas, String direccion, String zona, char tipoInmueble, float precio, String revisor, int superficieMinima, String observaciones, boolean estado) {
+    public Inmueble(int idInmueble, Inquilino ocupante, Propietario propietario, int idPropietario,String caracteristicas, String direccion, String zona, String tipoInmueble, float precio, String revisor, int superficieMinima, String observaciones, int estado) {
         this.idInmueble = idInmueble;
         this.ocupante = ocupante;
         this.propietario = propietario;
+	this.idPropietario = idPropietario;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
         this.zona = zona;
@@ -45,9 +47,10 @@ public class Inmueble {
         this.estado = estado;
     }
 
-    public Inmueble(Inquilino ocupante, Propietario propietario, String caracteristicas, String direccion, String zona, char tipoInmueble, float precio, String revisor, int superficieMinima, String observaciones, boolean estado) {
+    public Inmueble(Inquilino ocupante, Propietario propietario,int idPropietario, String caracteristicas, String direccion, String zona, String tipoInmueble, float precio, String revisor, int superficieMinima, String observaciones, int estado) {
         this.ocupante = ocupante;
         this.propietario = propietario;
+	this.idPropietario = idPropietario;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
         this.zona = zona;
@@ -82,6 +85,14 @@ public class Inmueble {
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
     }
+    
+     public int getIdPropietario() {
+        return idPropietario;
+    }
+
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
+    }
 
     public String getCaracteristicas() {
         return caracteristicas;
@@ -107,11 +118,11 @@ public class Inmueble {
         this.zona = zona;
     }
 
-    public char getTipoInmueble() {
+    public String getTipoInmueble() {
         return tipoInmueble;
     }
 
-    public void setTipoInmueble(char tipoInmueble) {
+    public void setTipoInmueble(String tipoInmueble) {
         this.tipoInmueble = tipoInmueble;
     }
 
@@ -147,19 +158,33 @@ public class Inmueble {
         this.observaciones = observaciones;
     }
 
-    public boolean isEstado() {
+    public int isEstado() {
+        return estado;
+    }
+    
+     public int getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+   
+
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return "Inmueble{" + "idInmueble=" + idInmueble + ", ocupante=" + ocupante + ", propietario=" + propietario + ", caracteristicas=" + caracteristicas + ", direccion=" + direccion + ", zona=" + zona + ", tipoInmueble=" + tipoInmueble + ", precioTazado=" + precio + ", revisor=" + revisor + ", superficieMinima=" + superficieMinima + ", observaciones=" + observaciones + ", estado=" + estado + '}';
-    }
-    
+	@Override
+	public String toString() {
+		return " " + idInmueble + ' ';
+	}
+
+//  @Override
+//    public String toString() {
+//        //alumno.getApellido()+ "," + alumno.getNombre()+ "," + materia.getNombre();
+//        return idInmueble  + "," +  ocupante.getIdInquilino() + "," + propietario.getIdPropietario() + "," + caracteristicas
+//                + "," + direccion + "," + zona + "," + tipoInmueble + "," + precio + "," + superficieMinima ;
+//    }	
+
+	
     
 
 }

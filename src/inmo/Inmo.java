@@ -8,6 +8,7 @@ package inmo;
 import AccesoADatos.Conexion;
 import AccesoADatos.PropietarioData;
 import Entidades.Propietario;
+import Vistas.MenuPrincipal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ public class Inmo {
         
         Connection conexion = Conexion.getConexion();
         Propietario prop = new Propietario();
-        PropietarioData proD= new PropietarioData();
+	
+	    MenuPrincipal men = new MenuPrincipal();
+			    men.setVisible(true);
 
 //----------------------------------------GUARDAR PROPIETARIO-------------------------------------------
-      proD.guardarPropietario(new Propietario("Fabricio","enrique",5445554,"cordoba 220",15444872,true));
+//      proD.guardarPropietario(new Propietario("Fabricio","enrique",5445554,"cordoba 220",15444872,true));
 //----------------------------------------ELIMINAR PROPIETARIO-----------------------------------------
 //    int idPropietarioAEliminar = 5;
 //    proD.eliminarPropietario(idPropietarioAEliminar);
